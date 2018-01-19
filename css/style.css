@@ -1,0 +1,19 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.playArea {
+    border: 1px solid black;
+    cursor: pointer;
+    background: orange;
+}
+
+.clicked {
+    background: red;
+}
+
+#game {
+    height: 70vh;
+}

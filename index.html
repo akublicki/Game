@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery</title>
+    <meta name="viewport" content="initial-scale=1">
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
+    <script
+            src="https://code.jquery.com/jquery-3.2.1.js"
+            integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+            crossorigin="anonymous">
+    </script>
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div id="game" class="col-xs-8">
+        </div>
+        <div class="col-xs-4">
+            <h4>Runda <span id="level"></span></h4>
+            <h3>Punkty: <span id="gameScore">0</span></h3>
+            <h3>Czas: <span id="timeToEnd">0:30</span></h3>
+            <form>
+                Poziom trudności:<br>
+                <input type="radio" name="difficultyLevel" value="9" checked>Łatwy
+                <input type="radio" name="difficultyLevel" value="16">Średni
+                <input type="radio" name="difficultyLevel" value="25">Trudny
+            </form>
+            <button id="play" type="button" class="btn btn-info">Graj</button>
+        </div>
+    </div>
+</div>
+<script src="js/script.js"></script>
+</body>
+</html>
