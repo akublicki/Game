@@ -10,10 +10,32 @@ html, body {
     background: orange;
 }
 
-.clicked {
+.activeGood {
     background: red;
+}
+
+.activeBad {
+    background: black;
 }
 
 #game {
     height: 70vh;
+}
+
+#coverRound {
+    position: absolute;
+    margin-left: 8%;
+    margin-top: 5%;
+    height: 80%;
+    width: 80%;
+    /*background: rgba(0, 0, 0, 0.3);*/
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#coverRound h1{
+    font-size: 7em;
+    font-weight: bold;
 }
