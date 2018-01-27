@@ -90,12 +90,15 @@ function createGame() {
         switch (levelL) {
             case 9:
                 timeBetweenBoxes = 2000;
+                quantityBox = 9;
                 break;
             case 16:
                 timeBetweenBoxes = 1400;
+                quantityBox = 16;
                 break;
             case 25:
                 timeBetweenBoxes = 1000;
+                quantityBox = 25;
                 break;
         }
         createGameArea();
@@ -107,24 +110,26 @@ function createGame() {
     function startGame() {
         $('#play').attr('disabled', 'disabled'); //wyłącza możliwość ponownego startu
         $difficultyLevelChecked.attr('disabled', 'disabled'); //wyłącza możliwość wyboru trudności
+        $('#stop').removeAttr('disabled');
         $('#level').text(level); // wyświetla która runda
         timeCounterInterval = setInterval(function () {
             seconds = setGameTime % 60;
             $('#timeToEnd').text('0:' + seconds);
-            if (seconds === 0) {
+            if (seconds === 0) { // end round time
                 setGameTime = 30;
                 clearInterval(timeCounterInterval);
                 clearInterval(activeGameInterval);
                 clearTimeout(activeBoxInterval);
                 gameArea[divColor].removeActiveBox();
-                if (roundScore >= (totalRoundPoints / 100) * 70) {
+                if (roundScore >= (totalRoundPoints / 100) * 70) {  // play next round
                     level++;
                     totalRoundPoints = 0;
                     if (timeBetweenBoxes > 200) {
                         timeBetweenBoxes -= 200;
                         showRound();
                     }
-                } else {
+                } else { // end game
+                    showResult();
                     score = 0;
                     level = 1;
                     $('#play').removeAttr('disabled');
@@ -145,7 +150,7 @@ function createGame() {
                 // $('#' + divColor).addClass('activeGood');
                 goodBadBox = Math.round(Math.random() * 3);
                 gameArea[divColor].setActiveBox(goodBadBox);
-                if(goodBadBox) totalRoundPoints++;
+                if (goodBadBox) totalRoundPoints++;
             }
         }, timeBetweenBoxes);
 
@@ -174,6 +179,7 @@ function createGame() {
         clearInterval(activeGameInterval);
         clearTimeout(activeBoxInterval);
         gameArea[divColor].removeActiveBox();
+        showResult();
         score = 0;
         level = 1;
         setGameTime = 30;
@@ -181,38 +187,52 @@ function createGame() {
         $difficultyLevelChecked.removeAttr('disabled');
         $('#level').text(" ");
         $('#gameScore').text(score);
-        $('#timeToEnd').text(setGameTime);
+        $('#timeToEnd').text('0:' + setGameTime);
+    }
+
+    function showResult() {
+        $('#roundText').show().html("<div id='endGameText'>KONIEC GRY</div><div id='endGameScoreText'>Twój wynik: " + score + "</div>");
+        $('#coverRound').show().css("background", "rgba(0, 0, 0, 0.3)");
     }
 
     function counter() {
+        $('#play').attr('disabled', 'disabled');
+        $('#stop').attr('disabled', 'disabled');
+        $difficultyLevelChecked.attr('disabled', 'disabled');
+        $('#roundText').hide();
+        $('#coverRound').css("background", "transparent").show();
         var countNumber = 3;
-        $('#coverRound').removeClass('hidden');
-        var count = setInterval(function () {
-            if(countNumber >0) {
-                $('#roundText').text(countNumber);
-            }else if(countNumber === 0){
-                $('#roundText').text('START');
-            }else {
-                $('#roundText').text('');
-                $('#coverRound').addClass('hidden');
-                clearInterval(count);
+        var countTimeout = setInterval(function () {
+            if (countNumber > 0) {
+                // $('#roundText').text(countNumber);
+                $('#roundText').text(countNumber).fadeIn(700, function () {
+                    $(this).hide();
+                });
+            } else if (countNumber === 0) {
+                $('#roundText').text('START').fadeIn(700, function () {
+                    $(this).hide();
+                });
+            } else {
+                $('#roundText').hide();
+                $('#coverRound').hide();
+                clearInterval(countTimeout);
                 startGame();
                 return;
             }
             countNumber--;
-        },500);
+        }, 800);
     }
 
     function showRound() {
-        $('#roundText').text('Runda ' + level);
-        $('#coverRound').removeClass('hidden');
+        $('#coverRound').show();
+        $('#roundText').text('Runda ' + level).fadeIn(700);
         var timeout = setTimeout(function () {
-            $('#coverRound').addClass('hidden');
-            $('#roundText').text('');
+            $('#coverRound').hide();
+            $('#roundText').hide();
             clearTimeout(timeout);
             startGame();
             return
-        },500);
+        }, 700);
     }
 }
 

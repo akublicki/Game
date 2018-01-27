@@ -13,20 +13,28 @@
 <div class="container">
     <div class="row">
         <div id="menu" class="col-xs-12 col-md-4 col-md-push-8">
-            <h4>Runda <span id="level"></span></h4>
-            <h3>Punkty: <span id="gameScore">0</span></h3>
-            <h3>Czas: <span id="timeToEnd">0:30</span></h3>
-            <form>
-                Poziom trudności:<br>
-                <input type="radio" name="difficultyLevel" value="9" checked>Łatwy
-                <input type="radio" name="difficultyLevel" value="16">Średni
-                <input type="radio" name="difficultyLevel" value="25">Trudny
-            </form>
-            <button id="play" type="button" class="btn btn-info">Graj</button>
-            <button id="stop" type="button" class="btn btn-info">Zakończ grę</button>
+            <div id="result">
+                <h2>Runda <span id="level"></span></h2>
+                <h2>Punkty: <span id="gameScore">0</span></h2>
+                <h2>Czas: <span id="timeToEnd">0:30</span></h2>
+            </div>
+            <div id="hardLevelNavigation">
+                <form>
+                    <h4>
+                    Poziom trudności:<br>
+                    <input type="radio" name="difficultyLevel" value="9" checked>Łatwy
+                    <input type="radio" name="difficultyLevel" value="16">Średni
+                    <input type="radio" name="difficultyLevel" value="25">Trudny
+                    </h4>
+                </form>
+                <div>
+                    <button id="play" type="button" class="btn btn-info">Graj</button>
+                    <button id="stop" type="button" class="btn btn-info" disabled>Zakończ grę</button>
+                </div>
+            </div>
         </div>
         <div id="game" class="col-xs-12 col-md-8 col-md-pull-4">
-            <div id="coverRound" class="col-xs-12 hidden">
+            <div id="coverRound" class="col-xs-12">
                 <h1 id="roundText"></h1>
             </div>
         </div>
