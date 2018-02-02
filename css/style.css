@@ -5,13 +5,49 @@ html, body {
 }
 
 .playArea {
-    border: 1px solid black;
+    border: 5px solid #949494;
     cursor: pointer;
-    background: orange;
+    /*background: orange;*/
+    background: black;
+}
+
+.safeDoor {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    backface-visibility: hidden;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    transform-origin: left;
+    transition: 0.4s transform linear;
+}
+
+.coin {
+    position: absolute;
+    height: 80%;
+    margin: auto auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: none;
+}
+
+.thief {
+    position: absolute;
+    height: 100%;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    display: none;
 }
 
 .activeGood {
-    background: red;
+    /*background: red;*/
+    background: black;
 }
 
 .activeBad {
@@ -22,19 +58,19 @@ html, body {
     height: 70vh;
 }
 
-@media screen and (max-width: 992px){
-    #menu{
+@media screen and (max-width: 992px) {
+    #menu {
         display: flex;
         flex-direction: column-reverse;
     }
 
-    #result{
+    #result {
         display: flex;
         flex-direction: row;
         justify-content: space-around;
     }
 
-    #hardLevelNavigation{
+    #hardLevelNavigation {
         display: flex;
         flex-direction: row;
         justify-content: space-around;
@@ -48,24 +84,34 @@ html, body {
     margin-top: 1%;
     height: 98%;
     width: 94%;
-    /*background: rgba(0, 0, 0, 0.3);*/
     z-index: 2;
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 5;
 }
 
-#roundText{
+.coverRoundShow {
+    border: 2px solid #FF8619;
+    border-radius: 20px;
+    /*background: rgba(0, 0, 0, 0.3);*/
+}
+
+#roundText {
     display: none;
     font-size: 9em;
     font-weight: bold;
     text-align: center;
 }
 
-#endGameText{
+#endGameText {
     font-size: 0.6em;
 }
 
-#endGameScoreText{
+#endGameScoreText {
     font-size: 0.5em;
 }
+
+/*color: #FF8619;*/
+/*color: #E5D2BC;*/
+/*color: #080808;*/

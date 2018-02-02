@@ -9,15 +9,15 @@ function createBox(id) {
         insertBox: function (difficultyLevel) {
             switch (difficultyLevel) {
                 case 9:
-                    $gamePlace.append($('<div id="' + id + '" class="playArea col-xs-4"></div>'));
+                    $gamePlace.append($('<div id="' + id + '" class="playArea col-xs-4"><img src="images/safe_door.png" class="safeDoor"><img src="images/coin.png" class="coin"><img src="images/thief.png" class="thief"></div>'));
                     height = $gamePlace.height() / 3;
                     break;
                 case 16:
-                    $gamePlace.append($('<div id="' + id + '" class="playArea col-xs-3"></div>'));
+                    $gamePlace.append($('<div id="' + id + '" class="playArea col-xs-3"><img src="images/safe_door.png" class="safeDoor"><img src="images/coin.png" class="coin"><img src="images/thief.png" class="thief"></div>'));
                     height = $gamePlace.height() / 4;
                     break;
                 case 25:
-                    $gamePlace.append($('<div id="' + id + '" class="playArea col-xs-4"></div>'));
+                    $gamePlace.append($('<div id="' + id + '" class="playArea col-xs-4"><img src="images/safe_door.png" class="safeDoor"><img src="images/coin.png" class="coin"><img src="images/thief.png" class="thief"></div>'));
                     height = $gamePlace.height() / 5;
                     $('.playArea').css({
                         display: 'inline - block',
@@ -35,9 +35,13 @@ function createBox(id) {
 
         setActiveBox: function (goodBad) {
             if (goodBad) {
+                $('#' + id + ' .safeDoor').css('transform', 'rotateY(-85deg)');
                 $('#' + id).addClass('activeGood');
+                $('#' + id + ' .coin').show();
                 boxState = 1;
             } else {
+                $('#' + id + ' .safeDoor').css('transform', 'rotateY(-85deg)');
+                $('#' + id + ' .thief').show();
                 $('#' + id).addClass('activeBad');
                 boxState = 2;
             }
@@ -45,6 +49,9 @@ function createBox(id) {
 
         removeActiveBox: function () {
             if (boxState) {
+                $('#' + id + ' .coin').hide();
+                $('#' + id + ' .thief').hide();
+                $('#' + id + ' .safeDoor').css('transform', 'rotateY(0deg)');
                 $('#' + id).removeClass('activeGood activeBad');
                 boxState = 0;
             }
@@ -193,9 +200,11 @@ function createGame() {
     function showResult() {
         $('#roundText').show().html("<div id='endGameText'>KONIEC GRY</div><div id='endGameScoreText'>Twój wynik: " + score + "</div>");
         $('#coverRound').show().css("background", "rgba(0, 0, 0, 0.3)");
+        $('#coverRound').addClass('coverRoundShow');
     }
 
     function counter() {
+        $('#coverRound').removeClass('coverRoundShow');
         $('#play').attr('disabled', 'disabled');
         $('#stop').attr('disabled', 'disabled');
         $difficultyLevelChecked.attr('disabled', 'disabled');
