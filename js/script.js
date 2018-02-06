@@ -9,15 +9,15 @@ function createBox(id) {
         insertBox: function (difficultyLevel) {
             switch (difficultyLevel) {
                 case 9:
-                    $gamePlace.append($('<div id="' + id + '" class="playArea col-xs-4"><img src="images/safe_door.png" class="safeDoor"><img src="images/coin.png" class="coin"><img src="images/thief.png" class="thief"></div>'));
+                    $gamePlace.append($('<div id="' + id + '" class="playArea col-xs-4"><img src="images/safe_door.png" class="safeDoor"><img src="images/coin.png" class="coin"><img src="images/thief2.png" class="thief"></div>'));
                     height = $gamePlace.height() / 3;
                     break;
                 case 16:
-                    $gamePlace.append($('<div id="' + id + '" class="playArea col-xs-3"><img src="images/safe_door.png" class="safeDoor"><img src="images/coin.png" class="coin"><img src="images/thief.png" class="thief"></div>'));
+                    $gamePlace.append($('<div id="' + id + '" class="playArea col-xs-3"><img src="images/safe_door.png" class="safeDoor"><img src="images/coin.png" class="coin"><img src="images/thief2.png" class="thief"></div>'));
                     height = $gamePlace.height() / 4;
                     break;
                 case 25:
-                    $gamePlace.append($('<div id="' + id + '" class="playArea col-xs-4"><img src="images/safe_door.png" class="safeDoor"><img src="images/coin.png" class="coin"><img src="images/thief.png" class="thief"></div>'));
+                    $gamePlace.append($('<div id="' + id + '" class="playArea col-xs-4"><img src="images/safe_door.png" class="safeDoor"><img src="images/coin.png" class="coin"><img src="images/thief2.png" class="thief"></div>'));
                     height = $gamePlace.height() / 5;
                     $('.playArea').css({
                         display: 'inline - block',
@@ -35,12 +35,12 @@ function createBox(id) {
 
         setActiveBox: function (goodBad) {
             if (goodBad) {
-                $('#' + id + ' .safeDoor').css('transform', 'rotateY(-85deg)');
+                $('#' + id + ' .safeDoor').css('transform', 'rotateY(88deg)');
                 $('#' + id).addClass('activeGood');
                 $('#' + id + ' .coin').show();
                 boxState = 1;
             } else {
-                $('#' + id + ' .safeDoor').css('transform', 'rotateY(-85deg)');
+                $('#' + id + ' .safeDoor').css('transform', 'rotateY(88deg)');
                 $('#' + id + ' .thief').show();
                 $('#' + id).addClass('activeBad');
                 boxState = 2;
