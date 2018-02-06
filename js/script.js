@@ -85,7 +85,7 @@ function createGame() {
         $('.playArea').remove();
         gameArea = [];
         for (var i = 0; i < levelL; i++) {
-            gameArea[i] = createBox(i);
+            gameArea[i] = new createBox(i);
         }
         gameArea.forEach(function (area, index) {
             area.insertBox(levelL);
