@@ -1,6 +1,6 @@
 var $gamePlace = $('#game');
 
-function createBox(id) {
+function CreateBox(id) {
     var height;
     var id = id;
     var boxState = 0;
@@ -50,17 +50,17 @@ function createBox(id) {
         removeActiveBox: function () {
             if (boxState) {
                 $('#' + id + ' .coin').hide();
-                $('#' + id + ' .thief').hide();
                 $('#' + id + ' .safeDoor').css('transform', 'rotateY(0deg)');
                 $('#' + id).removeClass('activeGood activeBad');
                 boxState = 0;
+                $('#' + id + ' .thief').hide();
             }
         }
     }
 }
 
 
-function createGame() {
+function CreateGame() {
     var gameArea = [];
     var levelL = 9;
     var divColor = 0;
@@ -85,7 +85,7 @@ function createGame() {
         $('.playArea').remove();
         gameArea = [];
         for (var i = 0; i < levelL; i++) {
-            gameArea[i] = new createBox(i);
+            gameArea[i] = new CreateBox(i);
         }
         gameArea.forEach(function (area, index) {
             area.insertBox(levelL);
@@ -138,9 +138,14 @@ function createGame() {
                 } else { // end game
                     showResult();
                     score = 0;
+                    $('#gameScore').text(score);
+                    $('#level').text(" ");
                     level = 1;
                     $('#play').removeAttr('disabled');
                     $difficultyLevelChecked.removeAttr('disabled');
+                    gameArea[divColor].removeActiveBox();
+                    divColor = 0;
+                    totalRoundPoints = 0;
                 }
                 roundScore = 0;
             } else {
@@ -245,5 +250,5 @@ function createGame() {
     }
 }
 
-var game = createGame();
+var game = new CreateGame();
 
