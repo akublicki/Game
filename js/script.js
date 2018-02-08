@@ -65,6 +65,7 @@ function CreateGame() {
     var levelL = 9;
     var divColor = 0;
     var goodBadBox;
+    var frequencyOfTheThiefShow = 10;
     var quantityBox = 9;
     var level = 1;
     var score = 0;
@@ -98,14 +99,17 @@ function CreateGame() {
             case 9:
                 timeBetweenBoxes = 2000;
                 quantityBox = 9;
+                frequencyOfTheThiefShow = 10;
                 break;
             case 16:
                 timeBetweenBoxes = 1400;
                 quantityBox = 16;
+                frequencyOfTheThiefShow = 5;
                 break;
             case 25:
                 timeBetweenBoxes = 1000;
                 quantityBox = 25;
+                frequencyOfTheThiefShow = 3;
                 break;
         }
         createGameArea();
@@ -160,7 +164,7 @@ function CreateGame() {
             if (setGameTime >= (timeBetweenBoxes / 1000)) {
                 divColor = Math.floor(Math.random() * quantityBox);
                 // $('#' + divColor).addClass('activeGood');
-                goodBadBox = Math.round(Math.random() * 3);
+                goodBadBox = Math.round(Math.random() * frequencyOfTheThiefShow);
                 gameArea[divColor].setActiveBox(goodBadBox);
                 if (goodBadBox) totalRoundPoints++;
             }
