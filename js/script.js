@@ -35,14 +35,14 @@ function CreateBox(id) {
 
         setActiveBox: function (goodBad) {
             if (goodBad) {
-                $('#' + id + ' .safeDoor').css('transform', 'rotateY(88deg)');
-                $('#' + id).addClass('activeGood');
+                $('#' + id + ' .safeDoor').css('transform', 'rotateY(-90deg)');
+                $('#' + id).addClass('active');
                 $('#' + id + ' .coin').show();
                 boxState = 1;
             } else {
-                $('#' + id + ' .safeDoor').css('transform', 'rotateY(88deg)');
+                $('#' + id + ' .safeDoor').css('transform', 'rotateY(-90deg)');
                 $('#' + id + ' .thief').show();
-                $('#' + id).addClass('activeBad');
+                $('#' + id).addClass('active');
                 boxState = 2;
             }
         },
@@ -51,7 +51,7 @@ function CreateBox(id) {
             if (boxState) {
                 $('#' + id + ' .coin').hide();
                 $('#' + id + ' .safeDoor').css('transform', 'rotateY(0deg)');
-                $('#' + id).removeClass('activeGood activeBad');
+                $('#' + id).removeClass('active');
                 boxState = 0;
                 $('#' + id + ' .thief').hide();
             }
@@ -115,6 +115,7 @@ function CreateGame() {
         createGameArea();
     });
 
+    showInstruction();
     $('#play').click(counter);
     $('#stop').click(stopGame);
 
@@ -208,7 +209,8 @@ function CreateGame() {
 
     function showResult() {
         $('#roundText').show().html("<div id='endGameText'>KONIEC GRY</div><div id='endGameScoreText'>Twój wynik: " + score + "</div>");
-        $('#coverRound').show().css("background", "rgba(0, 0, 0, 0.3)");
+        $('#coverRound').show();
+        $('#coverRound').addClass('instructionBackground');
         $('#coverRound').addClass('coverRoundShow');
     }
 
@@ -218,7 +220,9 @@ function CreateGame() {
         $('#stop').attr('disabled', 'disabled');
         $difficultyLevelChecked.attr('disabled', 'disabled');
         $('#roundText').hide();
-        $('#coverRound').css("background", "transparent").show();
+        $('#coverRound').css("box-shadow", "none");
+        $('#coverRound').removeClass('instructionBackground')
+        $('#coverRound').show();
         var countNumber = 3;
         var countTimeout = setInterval(function () {
             if (countNumber > 0) {
@@ -252,6 +256,39 @@ function CreateGame() {
             return
         }, 700);
     }
+
+    function showInstruction() {
+        $('#play').attr('disabled', 'disabled');
+        $('#stop').attr('disabled', 'disabled');
+        $difficultyLevelChecked.attr('disabled', 'disabled');
+        $('#roundText').css('text-align','left');
+        $('#roundText').show().html("<div id='instructionHeader'>INSTRUKCJA GRY</div>" +
+            "<div class='instructionPoint'>CEL GRY: " +
+            "   <span class='instructionPointText'>uzyskać jak najwięcej punktów</span></div>" +
+            "<div class='instructionPoint'>STEROWANIE:" +
+            "   <img class='instructionImgMouse' src='images/instructionMouseControl.png'> ," +
+            "   <img class='instructionImgMouse' src='images/instructionMouseButton.png'>" +
+            "</div>" +
+            "<div class='instructionPoint'>POZIOM TRUDNOŚCI: " +
+            "   <span class='instructionPointText'>łatwy, średni, trudny</span></div>" +
+            "<div class='instructionPoint'>CZAS: " +
+            "   <span class='instructionPointText'>30s runda</span></div>" +
+            "<div class='instructionPoint'>PUNKTY: " +
+            "   <span class='instructionPointText'><img id='instructionImgCoin' src='images/coin.png'> +1</span>" +
+            "   <span class='instructionPointText'> <img id='instructionImgThief' src='images/thief2.png'>-1</span>" +
+            "</div>" +
+            "<div class='instructionPoint'>KONIEC GRY: " +
+            "   <span class='instructionPointText'>< 70% punktów w rundzie</span></div>" +
+            "<button id='instructionCloseButton' class='btn btn-default center-block'>Zamknij</button>");
+        $('#coverRound').addClass('instructionBackground');
+        $('#coverRound').addClass('coverRoundShow');
+    }
+    $('#instructionCloseButton').click(function () {
+        $('#coverRound').hide();
+        $('#play').removeAttr('disabled');
+        $difficultyLevelChecked.removeAttr('disabled');
+    })
+
 }
 
 var game = new CreateGame();

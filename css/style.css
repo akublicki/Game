@@ -12,6 +12,7 @@ html, body {
     background: url("../images/open.png");
     background-repeat: no-repeat;
     background-size: 100% 100%;
+    perspective: 1500px;
 }
 
 .safeDoor {
@@ -48,14 +49,10 @@ html, body {
     display: none;
 }
 
-.activeGood {
-    /*background: red;*/
-    /*background: black;*/
+.active {
+    z-index: 4;
 }
 
-.activeBad {
-    /*background: black;*/
-}
 
 #game {
     height: 70vh;
@@ -91,7 +88,7 @@ html, body {
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 5;
+    /*z-index: 5;*/
 }
 
 .coverRoundShow {
@@ -105,13 +102,56 @@ html, body {
     font-size: 9em;
     font-weight: bold;
     text-align: center;
+    color: #FF8619;
+    text-shadow: 4px 4px rgba(0, 0, 0, 0.5);
+}
+
+.instructionBackground{
+    background: rgba(0, 0, 0, 0.5);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+#instructionHeader{
+    font-size: 0.5em;
+    text-align: center;
+}
+
+.instructionPoint{
+    color: white;
+    font-size: 0.25em;
+    margin: 0.3em 0;
+}
+
+.instructionPointText{
+    color: #E5D2BC;
+}
+
+.instructionImgMouse{
+    height: 12vh;
+}
+
+#instructionImgCoin{
+    width: 10%;
+}
+
+#instructionImgThief{
+    width: 11%;
+}
+
+#instructionCloseButton{
+    color: white;
+    background-color: #FF8619;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
 }
 
 #endGameText {
+    color: #FF8619;
+    text-shadow: 4px 4px rgba(0, 0, 0, 0.5);;
     font-size: 0.6em;
 }
 
 #endGameScoreText {
+    color: #E5D2BC;
     font-size: 0.5em;
 }
 
